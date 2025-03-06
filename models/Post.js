@@ -16,8 +16,8 @@ const postSchema = new mongoose.Schema({
         default: 0
     },
     createdBy:{
-        // need a "reference to the User model" -> figure out what this is
-        // required: true
+        type: String,
+        required: true
     }
 })
 
