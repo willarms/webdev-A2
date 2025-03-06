@@ -1,0 +1,29 @@
+{
+  "name": "webdev-a2",
+  "version": "1.0.0",
+  "description": "A2 Submission for Web Development - Piazza Backend",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/willarms/webdev-A2.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/willarms/webdev-A2/issues"
+  },
+  "homepage": "https://github.com/willarms/webdev-A2#readme",
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "body-parser": "^1.20.3",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "joi": "^17.13.3",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.12.1",
+    "nodemon": "^3.1.9"
+  }
+}
