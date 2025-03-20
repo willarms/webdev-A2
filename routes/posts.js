@@ -25,7 +25,7 @@ router.post('/', verifyToken, async (req, res) => {
 // GET /posts -> get all posts (publicly available)
 // with verify token ->
 // get all posts
-router.get('/', verifyToken, async (req, res) => {
+router.get('/', async (req, res) => {
 // without verify token ->
 // router.get('/', async (req, res) => {
     try {
@@ -37,11 +37,43 @@ router.get('/', verifyToken, async (req, res) => {
 })
 
 // GET /posts/:id -> publicly available
+router.get('/:postId', async (req, res) => {
+    try {
+        const post = Post.findById(req.params.postId)
+        res.send(post)
+    } catch(err) {
+        res.send({message: err})
+    }
+})
 
 // PUT /posts/:id -> update a post (only post creator can update)
+router.put('/:postId', verifyToken, async (req, res) => {
+    try {
+        const updatePostById = await Post.updateOne(
+            {_id: req.params.postId},
+            {$set: {
+                title:req.body.title,
+                description:req.body.description,
+                createdBy: req.user._id 
+            }}
+        )
+        res.send(updatePostById)
+    } catch(err) {
+        res.send({message: err})
+    }
+})
 
 // DELETE /posts/:id -> delete a post (only post creator can delete)
-
+router.delete('/:postId', verifyToken, async(req, res) => {
+    try {
+        const deletePostById = await Post.deleteOne(
+            {_id: req.params.postId}
+        )
+        res.send(deletePostById)
+    } catch(err) {
+        res.send({message: err})
+    }  
+})
 
 
 module.exports = router
